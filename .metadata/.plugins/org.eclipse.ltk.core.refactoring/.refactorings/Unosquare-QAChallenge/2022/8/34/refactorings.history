@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Unosquare-QAChallenge/src/test/resources/chromedriver/chromedriver.exe&apos; to &apos;chromedriverOld.exe&apos;" description="Rename resource &apos;chromedriver.exe&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/test/resources/chromedriver/chromedriver.exe" name="chromedriverOld.exe" stamp="1661010253403" updateReferences="true"/>
+</session>

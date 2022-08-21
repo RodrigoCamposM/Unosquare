@@ -1,0 +1,31 @@
+package com.unosquare.qachallenge;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+public class xboxPageTest {
+	private WebDriver driver; 
+	xboxPage xboxPage; 
+
+	@Before
+	public void setUp() throws Exception {
+		xboxPage = new xboxPage(driver);
+		driver = xboxPage.chromeDriverConnection(); // Creating connection 
+		xboxPage.getPage("https://www.microsoft.com/es-mx/"); //Open Browser and go to URL
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		//driver.quit(); //Close the browser
+	}
+
+	@Test
+	public void test() {
+		xboxPage.goToXboxShop();
+		xboxPage.xboxShop();
+		//assertEquals("Note: Your user name is qualityadmin.",registerPage.registeredMessage);
+	}
+
+}

@@ -1,0 +1,62 @@
+package com.unosquare.qachallenge;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+
+public class xboxPage extends Base{
+
+	public xboxPage(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
+	
+	//Locators
+	By windowsLinkLocator = By.id("shellmenu_1");
+	By windowsPageLocator = By.cssSelector("button[id='uhfCatLogoButton'][aria-label='Windows']");	
+	By searchBtnLocator = By.cssSelector("button[id='search']");	
+	By searchTxtBoxLocator = By.id("cli_shellHeaderSearchInput");
+	
+	By xboxPageLocator = By.xpath("//h2[contains(text(),’Consolas Xbox’)]");
+	By buynowBtnLocator = By.linkText("Comprar");
+	By showAppsBtnLocator = By.cssSelector("a[href*='https://www.microsoft.com/es-mx/search/shop/apps?q=Xbox']");
+			
+		
+			
+			
+	
+	/*
+	By registerLinkLocator = By.linkText("REGISTER");
+	By registerPageLocator = By.xpath("//img[@src='uhfCatLogoButton']");
+	By userNameLocator = By.id("email");
+	By passwordLocator = By.name("password");
+	By confirmPswLocator = By.cssSelector("input[name='confirmPassword']");
+	By registerBtnLocator = By.name("submit");
+	
+	By registeredMessage = By.tagName("font"); //We will use a List of elements and find all the ones that has font ... check registeedMessage
+	*/
+	
+	public void goToXboxShop() {
+		click(windowsLinkLocator); // click in the link to go to Windows page
+		wait(2); //Sleep 5 sec	
+		if(isDisplayed(windowsPageLocator)){ //Are we in windows page?
+			click(searchBtnLocator);
+			sendKeys("Xbox\n",searchTxtBoxLocator);
+			xboxShop();
+		} else { //element was not found in the page
+			System.out.println("Windows page was not found"); //sending message to console
+		}
+	}
+	
+	public void xboxShop() {
+		wait(5); //Sleep 5 sec
+		if(true){ //Are we in correct Xbox page?
+			click(buynowBtnLocator);
+			click(showAppsBtnLocator);
+		} else { //element was not found in the page
+			System.out.println("Xbox shop page was not found"); //sending message to console
+		}
+	}
+	
+	
+}

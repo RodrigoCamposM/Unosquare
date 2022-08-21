@@ -1,0 +1,82 @@
+package com.unosquare.qachallenge;
+
+import java.util.List;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class xboxPage extends Base{
+
+	public xboxPage(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
+	
+	//Locators
+	By windowsLinkLocator = By.id("shellmenu_2");
+	By windowsPageLocator = By.cssSelector("button[id='uhfCatLogoButton'][aria-label='Windows']");	
+	By searchBtnLocator = By.cssSelector("button[id='search']");	
+	By searchTxtBoxLocator = By.id("cli_shellHeaderSearchInput");
+	By alertBtnLocator = By.xpath("//button[@title='Permanecer en México - Español']");
+	
+	By xboxPageLocator = By.xpath("//h2[contains(text(),'Consolas Xbox, juegos y mucho más')]");
+	By buynowBtnLocator = By.linkText("Comprar");
+	By showAppsBtnLocator = By.cssSelector("a[href*='https://www.microsoft.com/es-mx/search/shop/apps?q=Xbox']");
+	By nextBtnLocator = By.xpath("//a[@aria-label='página siguiente']");
+			
+	By appsLocator = By.xpath("//div[@class='m-channel-placement-item']");
+			
+			
+	
+	/*
+	By registerLinkLocator = By.linkText("REGISTER");
+	By registerPageLocator = By.xpath("//img[@src='uhfCatLogoButton']");
+	By userNameLocator = By.id("email");
+	By passwordLocator = By.name("password");
+	By confirmPswLocator = By.cssSelector("input[name='confirmPassword']");
+	By registerBtnLocator = By.name("submit");
+	
+	By registeredMessage = By.tagName("font"); //We will use a List of elements and find all the ones that has font ... check registeedMessage
+	*/
+	
+	public void goToXboxShop() {
+		click(windowsLinkLocator); // click in the link to go to Windows page
+		wait(2); //Sleep 5 sec	
+		List<WebElement> resultList = findElements(windowsPageLocator);	// find out if a WebElement is present	
+		if(resultList.size()>0){ //Are we in windows page?
+			click(searchBtnLocator);
+			sendKeys("Xbox\n",searchTxtBoxLocator);
+			click(alertBtnLocator);
+			xboxShop();
+		} else { //element was not found in the page
+			System.out.println("Windows page was not found"); 
+		}
+	}
+	
+	public void xboxShop() {
+		wait(2); //Sleep 5 sec
+		List<WebElement> resultList = findElements(xboxPageLocator);	// find out if a WebElement is present
+		if(resultList.size()>0){ //Are we in Xbox page?
+			click(buynowBtnLocator);
+			click(showAppsBtnLocator);
+			int sumElements=0;
+			for (int i = 0; i < 3; i++) {
+				wait(15);
+				List<WebElement> appsList = findElements(appsLocator);
+				sumElements += appsList.size();					
+				click(nextBtnLocator);				
+			}
+			System.out.println("Total Apps in the first 3 pages is: " + sumElements);
+			
+			
+			
+		} else { //element was not found in the page
+			System.out.println("Xbox shop page was not found"); //sending message to console
+		}
+	}
+	
+	
+}
